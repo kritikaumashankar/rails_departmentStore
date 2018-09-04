@@ -1,0 +1,8 @@
+<h1>List Of Items</h1>
+<%= link_to 'Add New Item', new_departmental_item_path(@departmental) %>
+<ul>
+  <% @items.each do |item| %>
+    <li><%= link_to item.name, [@departmental, item] %></li>
+  <% end %>
+</ul>
+<%= link_to 'Back', departmental_path(@departmental.id)%>

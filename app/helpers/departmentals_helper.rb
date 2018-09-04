@@ -1,0 +1,2 @@
+module DepartmentalsHelper
+end
