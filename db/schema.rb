@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_212244) do
+ActiveRecord::Schema.define(version: 2018_09_05_163743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.string "author"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+  end
 
   create_table "departmentals", force: :cascade do |t|
     t.string "name"
@@ -30,5 +39,15 @@ ActiveRecord::Schema.define(version: 2018_09_04_212244) do
     t.index ["departmental_id"], name: "index_items_on_departmental_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.float "rate"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_ratings_on_item_id"
+  end
+
+  add_foreign_key "comments", "items"
   add_foreign_key "items", "departmentals"
+  add_foreign_key "ratings", "items"
 end

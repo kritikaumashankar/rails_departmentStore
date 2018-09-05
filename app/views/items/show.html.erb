@@ -1,9 +1,24 @@
 <h1><%= @departmental.name %></h1>
 
-<hr />
+
+
+
 <h4><%= @item.name %></h4>
 <p>$<%= @item.price %></p>
 <%= link_to 'Edit Item', edit_departmental_item_path([@departmental, @item]) %>
 
 <%= link_to 'Delete Item', [@departmental, @item], method: :delete %>
 <%= link_to 'Back To Items', departmental_items_path(@departmental) %>
+<%= link_to 'Add Comment', new_item_comment_path(@item) %>
+<%= link_to 'Add Rating', new_item_rating_path(@item) %>
+<hr />
+<h2>Ratings</h2>
+<%= @item.ratings.average(:rate) %> 
+<hr />
+<h2>Comments</h2>
+<% @item.comments.each do |comment| %>
+  <%= render 'comments/comment', { comment: comment } %>
+<% end %> 
+
+
+<hr />

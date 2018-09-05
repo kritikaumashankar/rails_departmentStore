@@ -1,0 +1,9 @@
+
+<h1>Add a Rating</h1>
+<%= form_for [@item, @rating] do |f| %>
+  
+  <%= f.label :rating %>
+  <%= f.number_field :rate, :step => 0.01 %>
+  <br />
+  <%= f.submit %>
+<% end %>

@@ -1,3 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :departmental
-end
+  has_many :comments, dependent: :destroy
+  has_many :ratings, dependent: :destroy
+
+  end
